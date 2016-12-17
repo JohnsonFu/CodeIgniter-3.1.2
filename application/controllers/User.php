@@ -15,7 +15,6 @@ public function __construct()
     $this->load->model('books_model');
     $this->load->helper('url_helper');
     $this->load->library('session');
-    $_SESSION['cart']=array();
 }
     public function login(){
         $this->load->helper('form');
@@ -37,7 +36,8 @@ public function __construct()
                 $data['userinfo']=$res;
                 $data['booklist']=$this->books_model->get_books();
                 $data['title'] = '个人信息';
-                $this->load->view('templates/header',$data);
+                $_SESSION['info']=$data;
+                $this->load->view('templates/header');
                 $this->load->view('user/homepage');
                 $this->load->view('templates/footer');
             }
@@ -70,10 +70,20 @@ public function __construct()
                 "price"=>$price,
 
             );
-            $arr=$_SESSION['cart'];
-            array_push($arr,$item);
-            $_SESSION['cart']=$arr;
-            $this->load->view('user/success');
+            if(isset($_SESSION['cart'])){
+                $arr=$_SESSION['cart'];
+                array_push($arr,$item);
+                $_SESSION['cart']=$arr;
+            }else{
+                $arr=array();
+                array_push($arr,$item);
+                $_SESSION['cart']=$arr;
+            }
+
+
+            $this->load->view('templates/header');
+            $this->load->view('user/homepage');
+            $this->load->view('templates/footer');
         }
     }
 

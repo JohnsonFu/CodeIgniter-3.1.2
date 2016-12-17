@@ -21,7 +21,7 @@
 <br>
 <br>
 <div class="container">
-<h1 style="font-size: 25px;">Welcome,<?PHP echo $userinfo['username'] ?><br></h1>
+<h1 style="font-size: 25px;">Welcome,<?PHP echo $_SESSION['info']['userinfo']['username'] ?><br></h1>
     <table class="table table-bordered">
         <tr>
             <th>书名</th>
@@ -30,7 +30,7 @@
             <th>加入购物车</th>
         </tr>
         <?php
-        foreach($booklist as $book){
+        foreach( $_SESSION['info']['booklist'] as $book){
         ?>
             <?php echo validation_errors(); ?>
 
@@ -46,4 +46,11 @@
         }
         ?>
     </table>
+    <?php
+    foreach( $_SESSION['cart'] as $item){
+        echo $item['name'];
+        echo "<br>";
+    }
+    ?>
+
 </div>
