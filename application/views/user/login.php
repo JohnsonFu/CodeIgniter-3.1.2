@@ -2,12 +2,12 @@
 
 <?php echo form_open('user/login'); ?>
 
-<label for="title">Title</label>
-<input type="input" name="title" /><br />
+<label for="username">用户名</label>
+<input type="text" name="username" /><br />
 
-<label for="text">Text</label>
-<textarea name="text"></textarea><br />
+<label for="password">密码</label>
+<input type="password"   name="password"/><br>
 
-<input type="submit" name="submit" value="Create news item" />
+<input type="submit"  name="submit" value="登录" />
 
 </form>
