@@ -1,1 +1,1 @@
-书籍添加成功!
+<?php echo $_SESSION['cart']['name']; ?>

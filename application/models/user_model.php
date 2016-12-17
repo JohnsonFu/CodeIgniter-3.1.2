@@ -18,9 +18,9 @@ class user_model extends CI_Model
         $password=$this->input->post('password');
        $result= $this->db->query("select * from tb_user where username='$username' and password='$password'")->result_array();
         if(count($result)>0){
-            return true;
+            return $result[0];
         }else{
-            return false;
+            return null;
         }
     }
 
