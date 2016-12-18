@@ -6,12 +6,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">Project name</a>
+            <a class="brand" href="#">DangDang</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="active"><a href="#">商城</a></li>
                     <li><a href=<?php echo site_url('user/showcart')?>>购物车</a></li>
-                    <li><a href="#contact">退出登录</a></li>
+                    <li><a href=<?php echo site_url('user/logout')?>>退出登录</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

@@ -51,6 +51,24 @@ public function __construct()
         $this->load->view('templates/footer');
     }
 
+    public function logout(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        session_destroy();
+        $data['title'] = 'login';
+        $this->load->view('templates/header',$data);
+        $this->load->view('user/login');
+        $this->load->view('templates/footer');
+    }
+
+    public function mall(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->view('templates/header');
+        $this->load->view('user/homepage');
+        $this->load->view('templates/footer');
+    }
+
     public function selectbook(){
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -73,11 +91,22 @@ public function __construct()
                 "name"=>$name,
                 "author"=>$author,
                 "price"=>$price,
-
+                 "qty"=>'1'
             );
             if(isset($_SESSION['cart'])){
                 $arr=$_SESSION['cart'];
-                array_push($arr,$item);
+                $isexist=false;
+                for($i=0;$i<count($arr);$i++){
+                    if($arr[$i]['name']==$item['name']){
+                        $item['qty']=$arr[$i]['qty']+1;
+                        $arr[$i]=$item;
+                        $isexist=true;
+                    }
+
+                }
+                if(!$isexist){
+                    array_push($arr,$item);
+                }
                 $_SESSION['cart']=$arr;
             }else{
                 $arr=array();
