@@ -15,6 +15,8 @@ public function __construct()
     $this->load->model('books_model');
     $this->load->helper('url_helper');
     $this->load->library('session');
+    $this->load->helper('form');
+    $this->load->library('form_validation');
 }
     public function login(){
         $this->load->helper('form');
@@ -47,8 +49,24 @@ public function __construct()
     }
     public function showcart(){
         $this->load->view('templates/header');
-        $this->load->view('user/success');
+        $this->load->view('user/shopcart');
         $this->load->view('templates/footer');
+    }
+
+    public function deletebook(){
+
+        $this->form_validation->set_rules('name', 'name', 'required');
+        if ($this->form_validation->run() === FALSE)
+        {
+           $this->mall();
+
+        }
+        else {
+            $this->user_model->deletebook();
+            $this->showcart();
+        }
+
+
     }
 
     public function logout(){
@@ -84,35 +102,9 @@ public function __construct()
 
         }
         else {
-            $name=$this->input->post('name');
-            $author=$this->input->post('author');
-            $price=$this->input->post('price');
-            $item=array(
-                "name"=>$name,
-                "author"=>$author,
-                "price"=>$price,
-                 "qty"=>'1'
-            );
-            if(isset($_SESSION['cart'])){
-                $arr=$_SESSION['cart'];
-                $isexist=false;
-                for($i=0;$i<count($arr);$i++){
-                    if($arr[$i]['name']==$item['name']){
-                        $item['qty']=$arr[$i]['qty']+1;
-                        $arr[$i]=$item;
-                        $isexist=true;
-                    }
 
-                }
-                if(!$isexist){
-                    array_push($arr,$item);
-                }
-                $_SESSION['cart']=$arr;
-            }else{
-                $arr=array();
-                array_push($arr,$item);
-                $_SESSION['cart']=$arr;
-            }
+
+           $this->user_model->selectbook();
 
 
             $this->load->view('templates/header');

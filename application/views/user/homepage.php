@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">DangDang</a>
+            <a class="brand" href="#">当当网</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="active"><a href="#">商城</a></li>
@@ -21,7 +21,7 @@
 <br>
 <br>
 <div class="container">
-<h1 style="font-size: 25px;">Welcome,<?PHP echo $_SESSION['info']['userinfo']['username'] ?><br></h1>
+<h1 style="font-size: 25px;">欢迎光临当当,<?PHP echo $_SESSION['info']['userinfo']['username'] ?><br></h1>
     <table class="table table-bordered">
         <tr>
             <th>书名</th>
