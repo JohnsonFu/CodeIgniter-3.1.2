@@ -9,9 +9,9 @@
             <a class="brand" href="#">Project name</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">返回</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="active"><a href="#">商城</a></li>
+                    <li><a href=<?php echo site_url('user/showcart')?>>购物车</a></li>
+                    <li><a href="#contact">退出登录</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -33,7 +33,6 @@
         foreach( $_SESSION['info']['booklist'] as $book){
         ?>
             <?php echo validation_errors(); ?>
-
             <?php echo form_open('user/selectbook'); ?>
             <tr>
             <th><?PHP echo $book['name'];?><input type="hidden" name="name" value=<?PHP echo $book['name'];?>></th>
@@ -46,11 +45,5 @@
         }
         ?>
     </table>
-    <?php
-    foreach( $_SESSION['cart'] as $item){
-        echo $item['name'];
-        echo "<br>";
-    }
-    ?>
 
 </div>

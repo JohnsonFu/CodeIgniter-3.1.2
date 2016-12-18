@@ -45,6 +45,11 @@ public function __construct()
                 $this->load->view('user/fail');
         }
     }
+    public function showcart(){
+        $this->load->view('templates/header');
+        $this->load->view('user/success');
+        $this->load->view('templates/footer');
+    }
 
     public function selectbook(){
         $this->load->helper('form');
